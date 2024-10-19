@@ -1,0 +1,54 @@
+<!-- <div class="main-panel" style="background-color: #f4f3ef;">  -->
+
+    <div class="content" style="background-color: #f4f3ef; min-height: 100vh; display: flex; justify-content: center; align-items: center;"> 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-user" style="width: 500px; margin: auto;">
+                    <div class="card-header text-center">
+                        <h5 class="card-title">Connexion</h5>
+                    </div>
+    
+                    <!-- Affichage du message d'erreur -->
+                    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <span>
+                            {{ errorMessage }}
+                        </span>
+                    </div>
+    
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="E-mail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Mot de passe</label>
+                                        <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="mot de passe">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    <button type="submit" (click)="login()" class="btn btn-primary btn-round">Connexion</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer-cmp></footer-cmp>    
+    </div>
+    
+    <!-- </div>  -->
+    

@@ -1,0 +1,68 @@
+<!-- <div class="main-panel" style="background-color: #f4f3ef;">  -->
+
+    <div class="content" style="background-color: #f4f3ef; min-height: 100vh; display: flex; justify-content: center; align-items: center;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-user" style="width: 500px; margin: auto;">
+                    <div class="card-header">
+                        <h5 class="card-title text-center">Inscription</h5>
+                    </div>
+                    
+                    <!-- Affichage du message de succès -->
+                    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+                        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        {{ successMessage }}
+                    </div>
+                    
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Nom</label>
+                                        <input type="text" [(ngModel)]="lastname" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Nom">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Prénom</label>
+                                        <input type="text" [(ngModel)]="firstname" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Prénom">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        <input type="text" [(ngModel)]="email" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="E-mail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Mot de passe</label>
+                                        <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Mot de passe">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    <button type="submit" (click)="save()" class="btn btn-primary btn-round">Inscrire</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer-cmp></footer-cmp>
+    </div>
+    
+    <!-- </div>  -->
+    
