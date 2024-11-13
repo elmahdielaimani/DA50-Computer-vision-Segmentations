@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
   <div class="col-md-4">
     <div class="card card-user">
       <div class="image">
@@ -118,8 +118,23 @@
       <div class="card-header">
         <h5 class="card-title">Modifier mon profil</h5>
       </div>
+       <!-- Affichage du message de succès -->
+       <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="nc-icon nc-simple-remove"></i>
+        </button>
+        {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="nc-icon nc-simple-remove"></i>
+      </button>
+      <span>
+          {{ errorMessage }}
+      </span>
+  </div>
       <div class="card-body">
-        <form>
+        <form (ngSubmit)="updateProfile()">
           <!-- <div class="row">
             <div class="col-md-5 pr-1">
               <div class="form-group">
@@ -144,13 +159,13 @@
             <div class="col-md-6 pr-1">
               <div class="form-group">
                 <label>Nom</label>
-                <input type="text" class="form-control" placeholder="Nom" value="Chet">
+                <input type="text"  [(ngModel)]="user.lastname" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Nom" value="Chet">
               </div>
             </div>
             <div class="col-md-6 pl-1">
               <div class="form-group">
                 <label>Prénom</label>
-                <input type="text" class="form-control" placeholder="Prénom" value="Faker">
+                <input type="text" [(ngModel)]="user.firstname" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Prénom" value="Faker">
               </div>
             </div>
           </div>
@@ -158,7 +173,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Adresse e-mail</label>
-                <input type="text" class="form-control" placeholder="Adresse e-mail" value="Faker@gmail.com">
+                <input type="text" [(ngModel)]="user.email" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Adresse e-mail" value="Faker@gmail.com">
               </div>
             </div>
           </div>
@@ -166,7 +181,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label>Mot de passe</label>
-                <input type="text" class="form-control" placeholder="Mot de passe" >
+                <input type="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone:true}" class="form-control" placeholder="Mot de passe" >
               </div>
             </div>
           </div>

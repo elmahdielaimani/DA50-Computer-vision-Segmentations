@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       if (resultData.status) {
         // Stocker le token dans le localStorage
         localStorage.setItem('token', resultData.token);
+        localStorage.setItem('userId', resultData.userId);
         this.router.navigateByUrl('dashboard');
       } else {
         // Afficher le message d'erreur
