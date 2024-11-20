@@ -1,0 +1,49 @@
+<div class="col-md-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Ajouter Image</h5>
+      </div>
+       <!-- Affichage du message de succès -->
+       <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="nc-icon nc-simple-remove"></i>
+        </button>
+        {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+      <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="nc-icon nc-simple-remove"></i>
+      </button>
+      <span>
+          {{ errorMessage }}
+      </span>
+  </div>
+      <div class="card-body">
+        <form  [formGroup]="imageService.form" (ngSubmit)="onSubmit()">
+          <input type="hidden" formControlName="_id">
+           <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Nom</label>
+                <input type="text" formControlName="nom" class="form-control" placeholder="Nom de l'image " >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Image</label>
+                <input type="file" class="form-control" placeholder="selectionner image" (change)="onSelectImage($event)" name="image" >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">Ajouter Image</button>
+            </div>
+          </div>
+          <img *ngIf="imagePreview" style="width:80px; height: 80px ;" [src]="imagePreview" alt="">
+        </form>
+      </div>
+    </div>
+  </div>

@@ -16,7 +16,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { ImagesComponent } from './pages/images/images.component'
+import { ImagesComponent } from './pages/images/images.component';
+import { AddImageComponent } from "./pages/add-image/add-image.component";
+import { ViewImageComponent } from './pages/view-image/view-image.component';
+import { EditImageComponent } from './pages/edit-image/edit-image.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -25,7 +29,10 @@ import { ImagesComponent } from './pages/images/images.component'
     AdminLayoutComponent,
     LoginComponent,
     RegisterComponent,
-    ImagesComponent
+    ImagesComponent,
+    AddImageComponent,
+    ViewImageComponent,
+    EditImageComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -39,6 +46,7 @@ import { ImagesComponent } from './pages/images/images.component'
     FixedPluginModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,36 @@
+// .btn i {
+//   font-size: 1.3rem; /* Augmente la taille des icônes */
+// }
+
+// .btn-danger i {
+//   color: #fff; /* Couleur de l'icône pour le bouton supprimer */
+// }
+
+// .btn-primary i {
+//   color: #fff; /* Couleur de l'icône pour le bouton réinitialiser */
+// }
+
+// .btn {
+//   padding: 0.3rem 0.55rem; /* Ajuste la taille du bouton pour s'adapter à l'icône */
+// }
+
+.actions i {
+    font-size: 1.5rem; /* Taille des icônes */
+    color: #252422; /* Couleur des icônes par défaut */
+    cursor: pointer; /* Affiche le curseur "main" au survol */
+    margin: 0 8px; /* Espacement entre les icônes */
+    transition: color 0.3s; /* Animation de transition pour le survol */
+  }
+  
+  .actions i:hover {
+    color: #ff5722; /* Change la couleur au survol */
+  }
+  
+  .delete-icon {
+    color: #e74c3c; /* Couleur spécifique pour supprimer */
+  }
+  
+  .reset-icon {
+    color: #3498db; /* Couleur spécifique pour réinitialiser */
+  }
+  

@@ -1,128 +1,70 @@
 <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title"> Images</h4>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="card-title mb-0">Images</h4>
+        <button routerLink="/add-image" class="btn btn-primary">Ajouter Image</button>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="nc-icon nc-simple-remove"></i>
+            </button>
+            {{ successMessage }}
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="nc-icon nc-simple-remove"></i>
+            </button>
+            <span>
+              {{ errorMessage }}
+            </span>
+          </div>
+          <div *ngIf="images.length > 0; else noImages">
             <table class="table">
               <thead class=" text-primary">
                 <th>
-                  Name
+                  Image
                 </th>
                 <th>
-                  Country
-                </th>
-                <th>
-                  City
+                  Nom
                 </th>
                 <th class="text-right">
-                  Salary
+                  Action
                 </th>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let image of images">
                   <td>
-                    Dakota Rice
+                    <img [src]="image.image" alt="Image" class="img-thumbnail" width="50">
                   </td>
                   <td>
-                    Niger
+                    {{ image.nom }}
                   </td>
-                  <td>
-                    Oud-Turnhout
-                  </td>
-                  <td class="text-right">
-                    $36,738
+                  <td class="text-right actions">
+                    <a [routerLink]="['/image', image._id]"><i class="fa fa-eye reset-icon" title="voir"></i></a>
+
+                    <!-- Icône pour supprimer -->
+                    <i class="fa fa-trash-o delete-icon" (click)="deleteImage(image._id)" title="Supprimer"></i>
+
+                    <!-- Icône pour réinitialiser -->
+                    <a [routerLink]="['/image/edit', image._id]"><i class="fa fa-pencil-square-o reset-icon"
+                        title="Modifier"></i></a>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    Minerva Hooper
-                  </td>
-                  <td>
-                    Curaçao
-                  </td>
-                  <td>
-                    Sinaai-Waas
-                  </td>
-                  <td class="text-right">
-                    $23,789
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Sage Rodriguez
-                  </td>
-                  <td>
-                    Netherlands
-                  </td>
-                  <td>
-                    Baileux
-                  </td>
-                  <td class="text-right">
-                    $56,142
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Philip Chaney
-                  </td>
-                  <td>
-                    Korea, South
-                  </td>
-                  <td>
-                    Overland Park
-                  </td>
-                  <td class="text-right">
-                    $38,735
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Doris Greene
-                  </td>
-                  <td>
-                    Malawi
-                  </td>
-                  <td>
-                    Feldkirchen in Kärnten
-                  </td>
-                  <td class="text-right">
-                    $63,542
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Mason Porter
-                  </td>
-                  <td>
-                    Chile
-                  </td>
-                  <td>
-                    Gloucester
-                  </td>
-                  <td class="text-right">
-                    $78,615
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Jon Porter
-                  </td>
-                  <td>
-                    Portugal
-                  </td>
-                  <td>
-                    Gloucester
-                  </td>
-                  <td class="text-right">
-                    $98,615
-                  </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
+          <!-- Message lorsque aucune image n'est disponible -->
+          <ng-template #noImages>
+            <div >
+              Aucune image disponible pour le moment.
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
+  </div>

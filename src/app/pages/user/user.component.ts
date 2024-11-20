@@ -61,7 +61,7 @@ export class UserComponent implements OnInit{
       // Optionnel: masquer le message après quelques secondes
       setTimeout(() => {
         this.successMessage = "";
-      }, 10000); 
+      }, 3000); 
         } else {
           this.errorMessage = "E-mail ou mot de passe incorrect.";
         
