@@ -1,0 +1,27 @@
+<div class="container justify-content-center align-item-center">
+  <div class="card">
+    <div class="card-header">
+      <h5>Modify User Role</h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" class="form-control" value="user.email" [(ngModel)]="user.email" name="email" readonly />
+        </div>
+
+        <div class="form-group">
+          <p>Current Role: {{ user.role }}</p>
+        </div>
+
+        <div *ngIf="user.role === 'user'">
+          <button type="submit" class="btn btn-primary" (click)="updateRole('administrator')">Update Role To Administrator</button>
+        </div>
+        <div *ngIf="user.role === 'administrator'">
+          <button type="submit" class="btn btn-primary" (click)="updateRole('user')">Update Role To User</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

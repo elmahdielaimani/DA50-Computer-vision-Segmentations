@@ -3,10 +3,12 @@ import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PromotionComponent } from './promotion/promotion.component';
 
 export const AppRoutes: Routes = [
   {path: 'login',component:LoginComponent} ,
   {path: 'register',component:RegisterComponent} ,
+  
   {
     path: '',
     redirectTo: 'dashboard',

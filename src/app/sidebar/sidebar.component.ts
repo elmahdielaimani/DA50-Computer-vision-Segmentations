@@ -12,6 +12,10 @@ export const ROUTES: RouteInfo[] = [
     { path: '/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
     { path: '/images',         title: 'Images',        icon:'nc-image',    class: '' },
     { path: '/user',          title: "mon profil",      icon:'nc-single-02',  class: '' },
+    { path: '/user-list',      title: 'Liste Utilisateurs',    icon:'nc-badge', class: ''},
+    // { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
+    // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
+    // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
 //     { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
 //     { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
 //     { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
@@ -28,9 +32,22 @@ export const ROUTES: RouteInfo[] = [
     templateUrl: 'sidebar.component.html',
 })
 
+
+
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    userId: string | null = null;
+    
     ngOnInit() {
+    // this.userId = localStorage.getItem('userId');
+    // if (this.userId) {
+    //   this.getUserInfo(this.userId);
+     
+    // }
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
+    
+    // getUserInfo(userId: string){
+
+    // }
 }

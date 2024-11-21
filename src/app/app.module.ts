@@ -17,6 +17,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { ImagesComponent } from './pages/images/images.component';
+import { UsersListComponent } from './pages/users-list/users-list.component';
+import { PromotionComponent } from './promotion/promotion.component';
 import { AddImageComponent } from "./pages/add-image/add-image.component";
 import { ViewImageComponent } from './pages/view-image/view-image.component';
 import { EditImageComponent } from './pages/edit-image/edit-image.component';
@@ -30,6 +32,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     LoginComponent,
     RegisterComponent,
     ImagesComponent,
+    UsersListComponent,
+    PromotionComponent,
     AddImageComponent,
     ViewImageComponent,
     EditImageComponent
