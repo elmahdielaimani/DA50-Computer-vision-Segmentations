@@ -33,7 +33,13 @@
                   <td>{{ user.role }}</td>
                   <td class="text-right">
                     <button [routerLink]="['/promotion', user.email]" class="btn btn-primary btn-round mr-1">Modifier</button>
-                    <button type="submit" class="btn btn-red btn-round">Supprimer</button>
+                    <button 
+                      *ngIf="user.email !== currentUserEmail" 
+                        type="submit" 
+                        (click)="deleteUser(user.email)" 
+                        class="btn btn-red btn-round">
+                        Supprimer
+                    </button>
                   </td>
                 </tr>
               </tbody>
