@@ -17,43 +17,38 @@ export class ImagesComponent implements OnInit {
   }
   images: any[] = []; // Tableau pour stocker les données des images
   searchText: string = ''; // Variable pour le champ de recherche
+  totalPages: number = 0; // Nombre total de pages
+currentPage: number = 1; // Page actuelle
+
 
 
   // Charger les images depuis le backend
-  loadImages() {
-    this.imageService.getImage().subscribe(
-      (res: any) => {
-        this.images = res; // Assigner les images à la variable
-      },
-      (error) => {
-        console.error('Erreur lors du chargement des images :', error);
-      }
-    );
-  }
+  // loadImages() {
+  //   this.imageService.getImage().subscribe(
+  //     (res: any) => {
+  //       this.images = res; // Assigner les images à la variable
+  //     },
+  //     (error) => {
+  //       console.error('Erreur lors du chargement des images :', error);
+  //     }
+  //   );
+  // }
 
-  // Supprimer une image
-  deleteImage(id: string) {
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette image ?')) {
-      this.imageService.deleteImage(id).subscribe(
+  loadImages(page: number = 1, limit: number = 10) {
+    this.imageService.getImages(page, limit).subscribe(
         (res: any) => {
-          this.successMessage = "Image supprimée avec succès.";
-          setTimeout(() => {
-            this.successMessage ="";
-          }, 2000); // Masquer le message après 3 secondes
-          // alert('Image supprimée avec succès.');
-          this.images = this.images.filter((image) => image._id !== id); // Mise à jour de la liste localement
+            this.images = res.images;
+            this.totalPages = res.totalPages; // Stocker le nombre total de pages
+            this.currentPage = res.currentPage; // Page actuelle
         },
         (error) => {
-          console.error('Erreur lors de la suppression de l\'image :', error);
-          this.errorMessage = "Une erreur s\'est produite lors de la suppression de l\'image.";
-          setTimeout(() => {
-            this.errorMessage ="";
-          }, 10000); // Masquer le message après 3 secondes
-          // alert('Une erreur s\'est produite lors de la suppression de l\'image.');
+            console.error('Erreur lors du chargement des images :', error);
         }
-      );
-    }
-  }
+    );
+}
+
+
+  
 
  
 

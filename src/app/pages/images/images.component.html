@@ -3,7 +3,6 @@
     <div class="card">
       <div class="card-header d-flex justify-content-between align-items-center">
         <h4 class="card-title mb-0">Images</h4>
-        <button routerLink="/add-image" class="btn btn-primary">Ajouter Image</button>
       </div>
 
       <div class="card-body">
@@ -45,16 +44,20 @@
                   </td>
                   <td class="text-right actions">
                     <a [routerLink]="['/image', image._id]"><i class="fa fa-eye reset-icon" title="voir"></i></a>
-
-                    <!-- Icône pour supprimer -->
-                    <i class="fa fa-trash-o delete-icon" (click)="deleteImage(image._id)" title="Supprimer"></i>
-
-                    <!-- Icône pour réinitialiser -->
-                    <a [routerLink]="['/image/edit', image._id]"><i class="fa fa-pencil-square-o reset-icon"
-                        title="Modifier"></i></a>
                   </td>
                 </tr>
-
+<!--               
+              <div class="pagination">
+                <button class="btn btn-primary" (click)="loadImages(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+                <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+                <button class="btn btn-primary" (click)="loadImages(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
+              </div> -->
+              <div class="pagination-container">
+                <button class="pagination-btn" (click)="loadImages(currentPage - 1)" [disabled]="currentPage === 1">PRÉCÉDENT</button>
+                <span class="pagination-text">Page {{ currentPage }} sur {{ totalPages }}</span>
+                <button class="pagination-btn" (click)="loadImages(currentPage + 1)" [disabled]="currentPage === totalPages">SUIVANT</button>
+              </div>
+              
               </tbody>
             </table>
           </div>

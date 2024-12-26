@@ -11,9 +11,7 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { ImagesComponent } from 'app/pages/images/images.component';
 import { UsersListComponent } from 'app/pages/users-list/users-list.component';
-import { AddImageComponent } from 'app/pages/add-image/add-image.component';
 import { ViewImageComponent } from 'app/pages/view-image/view-image.component';
-import { EditImageComponent } from 'app/pages/edit-image/edit-image.component';
 import { PromotionComponent } from 'app/promotion/promotion.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -29,7 +27,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
   { path: 'user-list', component: UsersListComponent, canActivate: [AuthGuard] },
   { path: 'upgrade', component: UpgradeComponent, canActivate: [AuthGuard] },
-  { path: 'add-image', component: AddImageComponent, canActivate: [AuthGuard] },
-  { path: 'image/edit/:id', component: EditImageComponent,canActivate: [AuthGuard] }, // Route pour modifier une image
   { path: 'promotion/:email', component: PromotionComponent, canActivate: [AuthGuard] },
 ];
