@@ -37,7 +37,8 @@ export class UserComponent implements OnInit{
       (response: any) => {
         if (response.status) {
           this.user = response.data; // Stocker les données de l'utilisateur
-          this.user.password="";
+          this.user.password='';
+          
           console.log(this.user)
         } else {
           this.errorMessage = 'Erreur lors de la récupération des données utilisateur';
@@ -50,25 +51,23 @@ export class UserComponent implements OnInit{
   }
 
 
-  // Soumettre les modifications
   updateProfile() {
-    this.http.patch(`http://localhost:9992/user/update/${this.userId}`, this.user).subscribe(
+    // Créez un objet utilisateur à envoyer
+    const userPayload = { ...this.user };
+  
+    // Supprimez le champ password si l'utilisateur n'a pas saisi un mot de passe
+    if (!userPayload.password || userPayload.password.trim() === '') {
+      delete userPayload.password;
+    }
+  
+    this.http.patch(`http://localhost:9992/user/update/${this.userId}`, userPayload).subscribe(
       (response: any) => {
         if (response.status) {
-          // Afficher le message de succès
-      this.successMessage = "Profil mis à jour avec succès !";
-      
-      // Optionnel: masquer le message après quelques secondes
-      setTimeout(() => {
-        this.successMessage = "";
-      }, 3000); 
+          this.successMessage = "Profil mis à jour avec succès !";
+          setTimeout(() => { this.successMessage = ""; }, 3000);
         } else {
           this.errorMessage = "E-mail ou mot de passe incorrect.";
-        
-          // Optionnel : masquer l'erreur après quelques secondes
-          setTimeout(() => {
-            this.errorMessage = "";
-          }, 10000); // Masquer le message après 3 secondes
+          setTimeout(() => { this.errorMessage = ""; }, 10000);
         }
       },
       (error) => {
@@ -76,6 +75,7 @@ export class UserComponent implements OnInit{
       }
     );
   }
+  
 }
     
 
