@@ -1,0 +1,11 @@
+img {
+    display: block;
+    max-width: 100%;
+    height: auto; /* Gérer les proportions automatiquement */
+  }
+  
+  polygon:hover {
+    fill: rgba(255, 0, 0, 0.3); /* Couleur au survol */
+    cursor: pointer;
+  }
+  

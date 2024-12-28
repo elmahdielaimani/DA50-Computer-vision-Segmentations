@@ -1,13 +1,38 @@
 <div class="row">
-    <div class="col-md-12">
-      <div class="card ">
-        <div class="card-header ">
-            {{image.nom}}
-        </div>
-        <div class="card-body ">
-            <img [src]="image.image" alt="{{ image.nom }}" class="img-fluid" />
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        {{ image.nom }}
+      </div>
+      <div class="card-body">
+        <div style="position: relative; width: 100%; max-width: 100%; margin: auto;">
+          <!-- Affichage de l'image -->
+          <img
+            *ngIf="image"
+            #imageElement
+            [src]="image.image"
+            style="width: 100%; height: auto; display: block;"
+            alt="{{ image.nom }}"
+            class="img-fluid"
+          />
+          <!-- Dessiner les polygones en SVG -->
+          <svg
+            *ngIf="objects.length > 0"
+            [attr.width]="imgWidth"
+            [attr.height]="imgHeight"
+            style="position: absolute; top: 0; left: 0;"
+          >
+            <polygon
+              *ngFor="let obj of objects"
+              [attr.points]="getScaledPolygonPoints(obj.polygon)"
+              fill="rgba(0, 255, 0, 0.3)"
+              stroke="green"
+              stroke-width="2"
+              (click)="handlePolygonClick(obj.label)"
+            ></polygon>
+          </svg>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
