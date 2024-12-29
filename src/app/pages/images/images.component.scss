@@ -1,70 +1,65 @@
-// .btn i {
-//   font-size: 1.3rem; /* Augmente la taille des icônes */
-// }
+/* Styles pour les icônes d'actions */
+.fa-eye {
+  font-size: 1.8rem; /* Taille augmentée pour rendre l'icône plus visible */
+  color: #51cbce; /* Couleur bleue pour l'icône */
+  margin: 0 12px; /* Espacement entre les icônes */
+  cursor: pointer; /* Affiche le curseur 'main' au survol */
+  transition: transform 0.3s ease, color 0.3s ease; /* Animation sur la taille et la couleur */
+}
 
-// .btn-danger i {
-//   color: #fff; /* Couleur de l'icône pour le bouton supprimer */
-// }
+.fa-eye:hover {
+  color: #51cbce; /* Couleur légèrement différente au survol */
+  transform: scale(1.2); /* L'icône devient un peu plus grande au survol */
+}
 
-// .btn-primary i {
-//   color: #fff; /* Couleur de l'icône pour le bouton réinitialiser */
-// }
+/* Styles pour la pagination */
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-// .btn {
-//   padding: 0.3rem 0.55rem; /* Ajuste la taille du bouton pour s'adapter à l'icône */
-// }
+.btn-primary {
+  background-color: #51cbce;
+  border-color: #51cbce;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-.actions i {
-    font-size: 1.5rem; /* Taille des icônes */
-    color: #252422; /* Couleur des icônes par défaut */
-    cursor: pointer; /* Affiche le curseur "main" au survol */
-    margin: 0 8px; /* Espacement entre les icônes */
-    transition: color 0.3s; /* Animation de transition pour le survol */
-  }
-  
-  .actions i:hover {
-    color: #ff5722; /* Change la couleur au survol */
-  }
-  
-  .delete-icon {
-    color: #e74c3c; /* Couleur spécifique pour supprimer */
-  }
-  
-  .reset-icon {
-    color: #3498db; /* Couleur spécifique pour réinitialiser */
-  }
-  
-  .pagination-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  
-    .pagination-btn {
-      background-color: #17a2b8;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #138496;
-      }
-  
-      &:disabled {
-        background-color: #d3d3d3;
-        color: #6c757d;
-        cursor: not-allowed;
-      }
-    }
-  
-    .pagination-text {
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-    }
-  }
-  
+.btn-primary:hover {
+  background-color: #51cbce;
+  transform: scale(1.05);
+}
+
+.btn-primary:disabled {
+  background-color: #d3d3d3;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.table-responsive {
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.text-primary {
+  color: #51cbce !important;
+}
+
+.img-thumbnail {
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  display: inline-block;
+  max-height: 50px;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
