@@ -1,11 +1,87 @@
 img {
-    display: block;
-    max-width: 100%;
-    height: auto; /* Gérer les proportions automatiquement */
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+polygon {
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-check {
+  margin-bottom: 0.75rem;
+  padding-left: 2rem;
+}
+
+.importance-label {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-weight: 500;
+  
+  &.high {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff0000;
+    border: 1px solid #ff0000;
   }
   
-  polygon:hover {
-    fill: rgba(255, 0, 0, 0.3); /* Couleur au survol */
-    cursor: pointer;
+  &.medium {
+    background-color: rgba(255, 165, 0, 0.1);
+    color: #ffa500;
+    border: 1px solid #ffa500;
   }
   
+  &.low {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: #008000;
+    border: 1px solid #008000;
+  }
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem 1.5rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.annotation-label {
+  font-size: 14px;
+  font-weight: 700;
+  pointer-events: none;
+  text-shadow: 
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+  text-transform: lowercase;
+}
+

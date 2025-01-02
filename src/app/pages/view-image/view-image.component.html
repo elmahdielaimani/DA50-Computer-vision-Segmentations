@@ -1,12 +1,14 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header">
-        {{ image.nom }}
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>{{ image?.nom }}</span>
+        <button class="btn btn-primary" (click)="downloadAnnotatedImage()" [disabled]="!image?._id">
+          Télécharger l'image annotée
+        </button>
       </div>
       <div class="card-body">
         <div style="position: relative; width: 100%; max-width: 100%; margin: auto;">
-          <!-- Affichage de l'image -->
           <img
             *ngIf="image"
             #imageElement
@@ -15,7 +17,6 @@
             alt="{{ image.nom }}"
             class="img-fluid"
           />
-          <!-- Dessiner les polygones en SVG -->
           <svg
             *ngIf="objects.length > 0"
             [attr.width]="imgWidth"
@@ -25,14 +26,80 @@
             <polygon
               *ngFor="let obj of objects"
               [attr.points]="getScaledPolygonPoints(obj.polygon)"
-              fill="rgba(0, 255, 0, 0.3)"
-              stroke="green"
+              [attr.fill]="getPolygonColor(obj)"
+              [attr.stroke]="getPolygonStrokeColor(obj)"
               stroke-width="2"
-              (click)="handlePolygonClick(obj.label)"
+              (click)="handlePolygonClick(obj)"
             ></polygon>
+            <text
+              *ngFor="let obj of objects"
+              [attr.x]="getPolygonCenter(obj.polygon).x"
+              [attr.y]="getPolygonCenter(obj.polygon).y"
+              [attr.fill]="getTextColor(obj)"
+              text-anchor="middle"
+              class="annotation-label"
+            >
+              {{ obj.importanceLevel || '' }}
+            </text>
           </svg>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Annoter l'objet : {{ selectedObject?.label }}</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Niveau d'importance :</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="importanceLevel" id="levelHigh" value="high" [(ngModel)]="selectedLevel">
+              <label class="form-check-label" for="levelHigh">
+                <span class="importance-label high">Haute Importance</span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="importanceLevel" id="levelMedium" value="medium" [(ngModel)]="selectedLevel">
+              <label class="form-check-label" for="levelMedium">
+                <span class="importance-label medium">Importance Moyenne</span>
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="importanceLevel" id="levelLow" value="low" [(ngModel)]="selectedLevel">
+              <label class="form-check-label" for="levelLow">
+                <span class="importance-label low">Faible Importance</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="comment">Justification :</label>
+            <textarea 
+              class="form-control" 
+              id="comment" 
+              rows="3" 
+              [(ngModel)]="comment" 
+              name="comment"
+              placeholder="Expliquez pourquoi vous avez choisi ce niveau d'importance..."
+            ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+        <button type="button" class="btn btn-primary" (click)="saveAnnotation()" [disabled]="!selectedObject">
+          Enregistrer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
