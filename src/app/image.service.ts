@@ -8,8 +8,7 @@ import { catchError, tap, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ImageService {
-  baseURL = 'http://localhost:9992/image';
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  private baseURL = 'http://localhost:9992/image';
 
   constructor(
     public fb: FormBuilder, 
@@ -21,17 +20,18 @@ export class ImageService {
     return throwError(() => new Error(error.error?.error || 'Une erreur est survenue'));
   }
 
-  getImages(page: number = 1, limit: number = 10) {
-    return this.http.get(`${this.baseURL}?page=${page}&limit=${limit}`).pipe(
+  getImagesByRole(page: number = 1, limit: number = 10, role: string): Observable<any> {
+    const headers = new HttpHeaders().set('role', role);
+    return this.http.get(`${this.baseURL}?page=${page}&limit=${limit}`, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
+  // Fonction pour obtenir une image par son ID
   getImageById(id: string): Observable<any> {
-    return this.http.get(`${this.baseURL}/${id}`, { headers: this.headers }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get(`${this.baseURL}/${id}`);
   }
+
 
   downloadAnnotatedImage(imageId: string): Observable<Blob> {
     return this.http.get(`${this.baseURL}/${imageId}/download`, {
@@ -49,11 +49,10 @@ export class ImageService {
   }
 
   saveAnnotations(annotationsData: any): Observable<any> {
-    return this.http.post(`${this.baseURL}/annotations`, annotationsData, { 
-      headers: this.headers 
-    }).pipe(
+    return this.http.post(`${this.baseURL}/annotations`, annotationsData).pipe(
       catchError(this.handleError)
     );
+
   }
 }
-
+  

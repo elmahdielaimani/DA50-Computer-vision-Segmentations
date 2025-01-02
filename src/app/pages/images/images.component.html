@@ -1,73 +1,51 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <h4 class="card-title mb-0">Images</h4>
-      </div>
-
-      <div class="card-body">
-        <div class="table-responsive">
-          <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show">
-            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-              <i class="nc-icon nc-simple-remove"></i>
-            </button>
-            {{ successMessage }}
-          </div>
-          <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show">
-            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-              <i class="nc-icon nc-simple-remove"></i>
-            </button>
-            <span>
-              {{ errorMessage }}
-            </span>
-          </div>
-          <div *ngIf="images.length > 0; else noImages">
-            <table class="table">
-              <thead class=" text-primary">
-                <th>
-                  Image
-                </th>
-                <th>
-                  Nom
-                </th>
-                <th class="text-right">
-                  Action
-                </th>
-              </thead>
-              <tbody>
-                <tr *ngFor="let image of images">
-                  <td>
-                    <img [src]="image.image" alt="Image" class="img-thumbnail" width="50">
-                  </td>
-                  <td>
-                    {{ image.nom }}
-                  </td>
-                  <td class="text-right actions">
-                    <a [routerLink]="['/image', image._id]"><i class="fa fa-eye reset-icon" title="voir"></i></a>
-                  </td>
-                </tr>
-<!--               
-              <div class="pagination">
-                <button class="btn btn-primary" (click)="loadImages(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h4 class="card-title mb-0">Images</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <div *ngIf="images.length > 0; else noImages">
+              <table class="table">
+                <thead class="text-primary">
+                  <tr>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let image of images">
+                    <td>
+                      <img [src]="image.image" alt="Image" class="img-thumbnail" width="50">
+                    </td>
+                    <td>{{ image.nom }}</td>
+                    <td class="text-right">
+                      <a [routerLink]="['/image', image._id]">
+                        <i class="fa fa-eye" title="Voir"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <button class="btn btn-primary" (click)="previousPage()" [disabled]="currentPage === 1">
+                  <i class="fa fa-chevron-left"></i> Précédent
+                </button>
                 <span>Page {{ currentPage }} sur {{ totalPages }}</span>
-                <button class="btn btn-primary" (click)="loadImages(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
-              </div> -->
-              <div class="pagination-container">
-                <button class="pagination-btn" (click)="loadImages(currentPage - 1)" [disabled]="currentPage === 1">PRÉCÉDENT</button>
-                <span class="pagination-text">Page {{ currentPage }} sur {{ totalPages }}</span>
-                <button class="pagination-btn" (click)="loadImages(currentPage + 1)" [disabled]="currentPage === totalPages">SUIVANT</button>
+                <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === totalPages">
+                  Suivant <i class="fa fa-chevron-right"></i>
+                </button>
               </div>
-              
-              </tbody>
-            </table>
-          </div>
-          <!-- Message lorsque aucune image n'est disponible -->
-          <ng-template #noImages>
-            <div >
-              Aucune image disponible pour le moment.
             </div>
-          </ng-template>
+            <ng-template #noImages>
+              <p>Aucune image disponible.</p>
+            </ng-template>
+          </div>
+          
         </div>
       </div>
     </div>
   </div>
+  
