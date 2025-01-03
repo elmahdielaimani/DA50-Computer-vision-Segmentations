@@ -19,7 +19,7 @@ export class ImagesComponent implements OnInit {
 
   ngOnInit(): void {
     // Récupérer le rôle de l'utilisateur (par exemple, depuis le localStorage ou une API)
-    this.userRole = localStorage.getItem('role') || 'utilisateur'; // Par défaut, utilisateur
+    this.userRole = localStorage.getItem('role') || 'user'; // Par défaut, utilisateur
     this.loadImages(); // Charger les images au démarrage
   }
 
