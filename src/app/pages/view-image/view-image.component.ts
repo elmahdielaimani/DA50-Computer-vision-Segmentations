@@ -145,17 +145,25 @@ export class ViewImageComponent implements OnInit, AfterViewInit {
     if (this.selectedObject && this.image?._id) {
       this.selectedObject.importanceLevel = this.selectedLevel;
       this.selectedObject.comment = this.comment;
-    
+  
+      const userId = localStorage.getItem('userId'); // Vérification de l'ID utilisateur
+  
+      if (!userId) {
+        alert('Utilisateur non connecté.');
+        return;
+      }
+  
       const annotationsData = {
         imageId: this.image._id,
+        userId, // Ajout explicite de l'ID utilisateur
         objects: this.objects.map(obj => ({
           label: obj.label,
-          importanceLevel: obj.importanceLevel || 'medium',
+          importanceLevel: obj.importanceLevel || '',
           comment: obj.comment || '',
           polygon: obj.polygon
         }))
       };
-
+  
       this.imageService.saveAnnotations(annotationsData).subscribe({
         next: () => {
           console.log('Annotations saved successfully');
@@ -168,7 +176,8 @@ export class ViewImageComponent implements OnInit, AfterViewInit {
       });
     }
   }
-
+  
+  
   downloadAnnotatedImage() {
     if (this.image?._id) {
       this.imageService.downloadAnnotatedImage(this.image._id)
