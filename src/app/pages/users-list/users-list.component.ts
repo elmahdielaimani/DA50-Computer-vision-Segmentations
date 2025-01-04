@@ -43,7 +43,6 @@ export class UsersListComponent implements OnInit {
           setTimeout(() => {
             this.successMessage ="";
           }, 2000); // Masquer le message après 3 secondes
-          // alert('Image supprimée avec succès.');
           this.users = this.users.filter((user) => user.email !== email); // Mise à jour de la liste localement
         },
         (error) => {
@@ -52,31 +51,8 @@ export class UsersListComponent implements OnInit {
           setTimeout(() => {
             this.errorMessage ="";
           }, 10000); // Masquer le message après 3 secondes
-          // alert('Une erreur s\'est produite lors de la suppression de l\'image.');
         }
       );
     }
   }
-  // Supprimer un utilisateur
-  // deleteUser(id: string) {
-  //   if (confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
-  //     this.imageService.deleteImage(id).subscribe(
-  //       (res: any) => {
-  //         this.successMessage = "Image supprimée avec succès.";
-  //         setTimeout(() => {
-  //           this.successMessage ="";
-  //         }, 2000); // Masquer le message après 3 secondes
-  //         // alert('Image supprimée avec succès.');
-  //         this.images = this.images.filter((image) => image._id !== id); // Mise à jour de la liste localement
-  //       },
-  //       (error) => {
-  //         console.error('Erreur lors de la suppression de l\'image :', error);
-  //         this.errorMessage = "Une erreur s\'est produite lors de la suppression de l\'image.";
-  //         setTimeout(() => {
-  //           this.errorMessage ="";
-  //         }, 10000); // Masquer le message après 3 secondes
-  //         // alert('Une erreur s\'est produite lors de la suppression de l\'image.');
-  //       }
-  //     );
-  //   }
 }

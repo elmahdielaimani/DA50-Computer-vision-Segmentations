@@ -13,6 +13,7 @@ export class ViewImageComponent implements OnInit, AfterViewInit {
   objects: any[] = [];
   imgWidth = 0;
   imgHeight = 0;
+  allowedLabels: string[] = ['car', 'traffic sign', 'buildings', 'road', 'person', 'vegetation'];
 
   showModal = false;
   selectedObject: any = null;
