@@ -29,7 +29,7 @@
               [attr.fill]="getPolygonColor(obj)"
               [attr.stroke]="getPolygonStrokeColor(obj)"
               stroke-width="2"
-              (click)="allowedLabels.includes(obj.label) && handlePolygonClick(obj)"
+              (click)="!disallowedLabels.includes(obj.label) && bbhandlePolygonClick(obj)"
             ></polygon>
             <text
               *ngFor="let obj of objects"
