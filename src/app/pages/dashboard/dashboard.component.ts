@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +12,19 @@ import Chart from 'chart.js';
 
 export class DashboardComponent implements OnInit{
 
+      userId: string | null = null;
+      user: any = {}; // Pour stocker les informations de l'utilisateur
+      errorMessage: string = '';
+      
+    // Variable pour afficher le message de succès
+      successMessage: string = "";
+  
+      constructor(
+          private http: HttpClient,
+          private route: ActivatedRoute,
+          private router: Router
+        ) {}
+
   public canvas : any;
   public ctx;
   public chartColor;
@@ -17,6 +32,11 @@ export class DashboardComponent implements OnInit{
   public chartHours;
 
     ngOnInit(){
+         // Récupérer l'ID de l'utilisateur (par exemple, à partir du stockage local)
+this.userId = localStorage.getItem('userId');
+if (this.userId) {
+ this.getUserInfo(this.userId);
+}
       this.chartColor = "#FFFFFF";
 
       this.canvas = document.getElementById("chartHours");
@@ -206,4 +226,24 @@ export class DashboardComponent implements OnInit{
         options: chartOptions
       });
     }
+// Récupérer les informations de l'utilisateur
+    getUserInfo(userId: string) {
+      this.http.get(`http://localhost:9992/user/getUser/${userId}`).subscribe(
+        (response: any) => {
+          if (response.status) {
+            this.user = response.data; // Stocker les données de l'utilisateur
+           
+            
+            console.log(this.user)
+          } else {
+            this.errorMessage = 'Erreur lors de la récupération des données utilisateur';
+          }
+        },
+        (error) => {
+          this.errorMessage = 'Erreur serveur, veuillez réessayer plus tard';
+        }
+      );
+    }
 }
+    
+   
